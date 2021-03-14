@@ -19,6 +19,7 @@ AddEventHandler('xmq:ringpd', function()
     end
   
     for k, v in pairs(players) do
-        TriggerClientEvent("pNotify:SendNotification", v ,{text = "En borger har ringet på klokken på Mission Row Politistation", type = "error", queue = "global", timeout = 8000, layout = "BottomCenter",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"},killer = true})
+        TriggerClientEvent("ringpdlyd", source)
+        TriggerClientEvent("pNotify:SendNotification", v ,{text = "En borger har ringet på klokken på Mission Row Politistation", type = "error", queue = "global", timeout = 8000, layout = "BottomRight",animation = {open = "gta_effects_fade_in", close = "gta_effects_fade_out"},killer = true})
     end
 end)

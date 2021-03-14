@@ -24,18 +24,19 @@ Citizen.CreateThread(function()
   while true do
     Citizen.Wait(1)
     if timer == 0 then
-      if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),442.61642456055,-981.08001708984,30.689317703247) < 4 then
-        DrawText3Ds(442.61642456055,-981.08001708984,30.689317703247+0.2, "~w~Tryk ~b~[E]~w~ for at ringe på klokken")
+      if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),441.49606323242,-980.39044189453,30.792869567871) < 1.5 then
+        DrawText3Ds(441.49606323242,-980.39044189453,30.792869567871+0.2, "~w~Tryk ~b~[E]~w~ for at ringe på klokken")
         if IsControlPressed(0,38) then
           TriggerServerEvent("xmq:ringpd")
-          timer = 300
+          TriggerServerEvent('3dme:shareDisplay', "Ringer på klokken")
+          timer = 60
         end
       end
     end
 
     if timer > 0 then
-      if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),442.61642456055,-981.08001708984,30.689317703247) < 4 then
-        DrawText3Ds(442.61642456055,-981.08001708984,30.689317703247+0.2, "~w~Du skal vente ~r~ "..timer.. "~w~ sekunder for at ringe på klokken.")
+      if GetDistanceBetweenCoords(GetEntityCoords(PlayerPedId()),441.49606323242,-980.39044189453,30.792869567871) < 1.5 then
+        DrawText3Ds(441.49606323242,-980.39044189453,30.792869567871+0.2, "~w~Du skal vente ~r~ "..timer.. "~w~ sekunder for at ringe på klokken.")
       end
     end
   end
@@ -49,4 +50,13 @@ Citizen.CreateThread(function()
       timer = timer-1
     end
   end
+end)
+
+function ringpdlyd(source)
+  PlaySound(source, "Menu_Accept", "Phone_SoundSet_Default", 0, 0, 1)
+end
+
+RegisterNetEvent("ringpdlyd")
+AddEventHandler("ringpdlyd", function()
+  PlaySound(-1, "Menu_Accept", "Phone_SoundSet_Default", 0, 0, 1)
 end)
